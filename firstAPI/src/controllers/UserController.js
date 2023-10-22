@@ -27,5 +27,16 @@ module.exports = {
             // response.end(JSON.stringify(user));
         response.send(200, user);
         
-    }
+    },
+    createUser(request, response){
+        const { body } = request;
+        //body = JSON.parse(body);
+        const lastUserID = users[users.length - 1].id;
+        const newUser = {
+            id: lastUserID + 1,
+            name: body.name,
+        };
+        users.push(newUser);
+        response.send(200, newUser);
+    },
 };
